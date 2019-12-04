@@ -1,0 +1,303 @@
+ #popup {
+     display: flex;
+     align-items: center;
+     background-color: rgba(81, 80, 82, 0.74);
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     overflow: auto;
+     position: fixed;
+     margin: 0;
+     top: 0;
+     left: 0;
+     transition: opacity 500ms;
+     //visibility: hidden;
+     z-index: 1000;
+ }
+ 
+ .cards {
+     width: 1072px;
+     height: 465px;
+     margin: auto;
+     display: flex;
+     position: relative;
+     flex-direction: row;
+     &_slider {
+         width: 100%;
+         height: 100%;
+         overflow: hidden;
+     }
+     &_block {
+         width: 100%;
+         height: 100%;
+     }
+     &_page {
+         font-size: 25px;
+         color: #ffffff;
+         background-color: transparent;
+         position: absolute;
+         text-decoration: none;
+         top: 0;
+         height: 100%;
+         width: 50px;
+         display: flex;
+         align-items: center;
+         user-select: none;
+     }
+     &_prev {
+         left: -35px;
+     }
+     &_next {
+         right: -50px;
+         justify-content: center;
+     }
+ }
+ 
+ .slider_block {
+     display: flex;
+     width: 9999px;
+     transition: margin-left 250ms;
+ }
+ 
+ .slide {
+     animation-name: fade;
+     animation-duration: 1.5s;
+ }
+ 
+ .active {
+     display: block;
+ }
+ 
+ @keyframes fade {
+     from {
+         opacity: .4
+     }
+     to {
+         opacity: 1
+     }
+ }
+ 
+ .card {
+     position: relative;
+     background-color: #ffffff;
+     padding: 30px 40px 30px 29px;
+     width: 1072px;
+     color: $card-color-text;
+     &__close {
+         background: url(../images/icon-close.svg) no-repeat 100%;
+         width: 12px;
+         height: 12px;
+         display: block;
+         position: absolute;
+         top: 14px;
+         right: 16px;
+         border: none;
+         outline: none;
+         cursor: pointer;
+         &:hover {
+             width: 14px;
+             height: 14px;
+             background-size: cover;
+         }
+         &:target {
+             #popup {
+                 visibility: visible;
+             }
+         }
+     }
+     &__heading {
+         color: #5e5e60;
+         display: flex;
+         align-items: center;
+         margin-bottom: 22px;
+     }
+     &__block {
+         display: flex;
+         flex-direction: row;
+         justify-content: space-between;
+         &_second {
+             font-family: "Myriad Pro";
+             font-size: 13px;
+             font-weight: 400;
+         }
+         &_icon {
+             width: 19px;
+             height: 20px;
+             margin-right: 6px;
+         }
+     }
+     &__link {
+         color: #5e5e60;
+         font-family: "Myriad Pro";
+         font-size: 13px;
+         font-weight: 400;
+         line-height: 18.54px;
+         &_first {
+             text-decoration: none;
+             margin-right: 73px;
+             display: flex;
+             flex-direction: row;
+             align-items: flex-end;
+         }
+         &_second {
+             font-family: "Myriad Pro";
+             font-size: 13px;
+             font-weight: 400;
+             line-height: 24px;
+             text-decoration: underline;
+         }
+     }
+     &__image {
+         width: 404px;
+         height: 405px;
+         margin-right: 44px;
+         &_item {
+             width: 404px;
+             height: 405px;
+         }
+     }
+     &__description {
+         width: 100%;
+         margin-bottom: 36px;
+         &_text {
+             font-family: "Myriad Pro";
+             font-size: 13px;
+             font-weight: 400;
+         }
+     }
+     &__information {
+         display: flex;
+         flex-direction: column;
+         justify-content: flex-start;
+         width: 60%;
+     }
+     &__products {
+         display: flex;
+         justify-content: space-between;
+     }
+     &__product {
+         $self: &;
+         display: flex;
+         flex-direction: column;
+         position: relative;
+         width: 178px;
+         &_title {
+             text-align: center;
+             color: $card-color-text;
+             font-family: "Myriad Pro";
+         }
+         &_name {
+             font-family: "Myriad Pro";
+             margin: 0;
+             font-size: 13px;
+             font-weight: 400;
+             letter-spacing: -0.5px;
+             text-align: center;
+         }
+         &_images {
+             width: 100%;
+             height: 100%;
+             position: absolute;
+             top: 0;
+             left: 0;
+             text-align: center;
+             transition: all 2s;
+         }
+         &_price {
+             display: flex;
+             justify-content: space-evenly;
+         }
+         &_cost {
+             &-new {
+                 font-family: "Myriad Pro";
+                 font-weight: bold;
+                 font-size: 13px;
+             }
+             &-old {
+                 text-decoration: line-through;
+                 font-size: 13px;
+             }
+         }
+         &_button {
+             background-color: #7660a3;
+             border: none;
+             outline: none;
+             cursor: pointer;
+             color: $button-color-text;
+             text-transform: uppercase;
+             padding-top: 9px;
+             padding-bottom: 10px;
+         }
+         &_sale {
+             position: absolute;
+             width: 32px;
+             height: 32px;
+             top: 2px;
+             right: 4px;
+         }
+         &_block {
+             position: relative;
+             width: 178px;
+             height: 178px;
+             margin-bottom: 20px;
+             margin-top: 20px;
+             overflow: hidden;
+             cursor: pointer;
+             &:hover {
+                 #{$self}_description {
+                     right: 0;
+                 }
+                 #{$self}_images {
+                     left: -100%;
+                 }
+             }
+         }
+         &_description {
+             position: absolute;
+             width: 100%;
+             height: 100%;
+             top: 0;
+             right: -110%;
+             padding-left: 10px;
+             background-color: #ffffff;
+             transition: all 2.5s;
+         }
+     }
+ }
+ 
+ .list {
+     list-style: none;
+     margin: 0;
+     padding-left: 0;
+     font-family: 'Myriad Pro';
+     &_title {
+         margin: 0;
+         font-weight: 400;
+     }
+     &_item {
+         font-size: 12px;
+         padding: 2px;
+         font-weight: 300;
+         &-color {
+             border-radius: 50%;
+             width: 14px;
+             height: 14px;
+             &:not(:last-child) {
+                 margin-right: 4px;
+             }
+         }
+     }
+ }
+ 
+ .colors {
+     display: flex;
+ }
+ 
+ .color {
+     &_1 {
+         background-color: lightblue;
+     }
+     &_2 {
+         background-color: blue;
+     }
+ }

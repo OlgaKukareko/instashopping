@@ -1,0 +1,89 @@
+.gallery {
+    max-width: 1413px;
+    margin: 0 auto;
+    overflow: hidden;
+    &__block {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 1fr;
+        grid-auto-flow: dense;
+        gap: 15px 15px;
+        overflow-y: scroll;
+    }
+    &__item {
+        $self: &;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        transition: all 5s ease;
+        &:hover {
+            #{$self}_hover {
+                display: flex;
+            }
+        }
+        &.middle {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+        // &.big {
+        //     grid-row: span 2;
+        //     grid-column: span 2;
+        // }
+        &:nth-child(3) {
+            grid-row: span 2;
+            grid-column: span 2;
+        }
+        &:nth-child(10n) {
+            grid-row: span 2;
+            grid-column: span 2;
+        }
+        // &:nth-child(11n) {
+        //     grid-row: span 2;
+        //     grid-column: span 2;
+        // }
+        &_image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        &_hover {
+            display: none;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+        &_button {
+            border: 1px solid #ffffff;
+            background-color: transparent;
+            width: 243px;
+            height: 55px;
+            cursor: pointer;
+            outline: none;
+        }
+        &_link {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-family: "Myriad Pro";
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 14.64px;
+            &:target {
+                #modal {
+                    display: flex;
+                }
+                #cards {
+                    display: block;
+                }
+            }
+        }
+    }
+}
