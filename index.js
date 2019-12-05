@@ -1,4 +1,5 @@
-//переключение между карточками
+'use strict'
+
 let arrow = document.getElementsByClassName('cards_page');
 let prev = document.getElementsByClassName('cards_prev');
 let next = document.getElementsByClassName('cards_next');
@@ -6,18 +7,18 @@ let bth = document.querySelector('.gallery__item_button');
 
 let closeCard = document.querySelector('.card__close');
 let popup = document.querySelector('#popup');
-let card = document.querySelectorAll('.cards_block');
+let card = document.querySelector('.cards_block');
 
-bth.addEventListener('click', function() {
-    if (popup.style.visibility == 'hidden' &&
-        popup.style.opacity == '0' &&
-        popup.style.zIndex == '-1') {
-        popup.style.visibility = 'visible';
-        popup.style.opacity = '1';
-        popup.style.zIndex = '1000';
-    };
-});
-closeCard.onclick = function() {
+bth.addEventListener('click', openPopup);
+
+function openPopup() {
+    popup.style.visibility = 'visible';
+    popup.style.opacity = '1';
+    popup.style.zIndex = '1000';
+}
+closeCard.addEventListener('click', closePopup);
+
+function closePopup() {
     if (popup.style.visibility == 'visible' &&
         popup.style.opacity == '1' &&
         popup.style.zIndex == '1000') {
