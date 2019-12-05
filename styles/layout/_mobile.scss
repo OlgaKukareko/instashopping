@@ -60,6 +60,182 @@
             }
         }
     }
+    .cards {
+        width: 451px;
+        height: 1591px;
+        &_page {
+            font-size: 22px;
+            color: #c2c2c2;
+        }
+        &_prev {
+            left: 55px;
+        }
+        &_next {
+            right: 46px;
+        }
+    }
+    .active {
+        display: block;
+    }
+    @keyframes fade {
+        from {
+            opacity: .4
+        }
+        to {
+            opacity: 1
+        }
+    }
+    .card {
+        position: relative;
+        background-color: #ffffff;
+        padding: 22px 34px 22px 30px;
+        width: 451px;
+        &__close {
+            width: 14px;
+            height: 14px;
+            top: 12px;
+            right: 14px;
+            &:hover {
+                width: 16px;
+                height: 16px;
+                background-size: cover;
+            }
+            &:target {
+                #popup {
+                    visibility: visible;
+                }
+            }
+        }
+        &__heading {
+            color: #5e5e60;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 21px;
+        }
+        &__block {
+            flex-direction: column;
+            position: relative;
+            &_icon {
+                width: 15px;
+                height: 15px;
+            }
+        }
+        &__link {
+            &_first {
+                margin-right: 73px;
+                align-items: flex-end;
+                line-height: 13.98px;
+                margin-bottom: 15px;
+            }
+        }
+        &__image {
+            width: 287px;
+            height: 300px;
+            position: absolute;
+            top: 156px;
+            left: 13%;
+            margin-right: 0;
+            &_item {
+                width: 287px;
+                height: 300px;
+            }
+        }
+        &__description {
+            width: 100%;
+            margin-bottom: 366px;
+            &_text {
+                font-family: "Myriad Pro";
+                font-size: 13px;
+                font-weight: 400;
+            }
+        }
+        &__information {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 100%;
+        }
+        &__products {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        &__product {
+            $self: &;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            width: 225px;
+            &:not(:last-child) {
+                margin-bottom: 25px;
+            }
+            &_title {
+                overflow: hidden;
+            }
+            &_name {
+                font-family: "Myriad Pro";
+                margin: 0;
+                font-size: 12px;
+            }
+            &_images {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                text-align: center;
+                transition: all 2s;
+                cursor: pointer;
+            }
+            &_cost {
+                &-new {
+                    font-size: 12px;
+                }
+                &-old {
+                    font-size: 12px;
+                }
+            }
+            &_button {
+                padding-top: 10px;
+                padding-bottom: 11px;
+            }
+            &_sale {
+                position: absolute;
+                width: 41px;
+                height: 41px;
+                top: 1px;
+                right: 4px;
+            }
+            &_block {
+                position: relative;
+                width: 225px;
+                height: 224px;
+                margin-bottom: 0;
+                margin-top: 20px;
+                overflow: hidden;
+                cursor: pointer;
+                &:hover {
+                    #{$self}_description {
+                        right: 0;
+                    }
+                    #{$self}_images {
+                        left: -100%;
+                    }
+                }
+            }
+            &_description {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                right: -110%;
+                padding-left: 10px;
+                background-color: #ffffff;
+                transition: all 2.5s;
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: 420px) {
