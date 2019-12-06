@@ -18,8 +18,16 @@
             gap: 8px 8px;
         }
         &__item {
+            $self: &;
             width: 220px;
             height: 220px;
+            &:hover {
+                #{$self}_hover {
+                    visibility: visible;
+                    opacity: 1;
+                    transition: all 2.5s ease;
+                }
+            }
             &.middle {
                 grid-column: span 1;
                 grid-row: span 1;
@@ -29,7 +37,8 @@
                 grid-column: span 1;
             }
             &_hover {
-                display: none;
+                visibility: hidden;
+                display: flex;
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
@@ -62,34 +71,37 @@
     }
     .cards {
         width: 451px;
-        height: 1591px;
+        height: 98%;
+        &_block {
+            width: 451px;
+            height: 100%;
+        }
         &_page {
             font-size: 22px;
             color: #c2c2c2;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            padding-bottom: 50%;
         }
         &_prev {
-            left: 55px;
+            left: 0;
+            z-index: 1;
+            padding-bottom: 48%;
         }
         &_next {
-            right: 46px;
+            right: 0;
         }
     }
-    .active {
-        display: block;
-    }
-    @keyframes fade {
-        from {
-            opacity: .4
-        }
-        to {
-            opacity: 1
-        }
+    .slider_block {
+        width: 451px;
+        height: 1550px;
     }
     .card {
-        position: relative;
-        background-color: #ffffff;
         padding: 22px 34px 22px 30px;
         width: 451px;
+        height: 100%;
+        overflow-y: scroll;
         &__close {
             width: 14px;
             height: 14px;
@@ -99,11 +111,6 @@
                 width: 16px;
                 height: 16px;
                 background-size: cover;
-            }
-            &:target {
-                #popup {
-                    visibility: visible;
-                }
             }
         }
         &__heading {
@@ -116,6 +123,7 @@
         &__block {
             flex-direction: column;
             position: relative;
+            width: 100%;
             &_icon {
                 width: 15px;
                 height: 15px;
@@ -137,17 +145,15 @@
             left: 13%;
             margin-right: 0;
             &_item {
-                width: 287px;
-                height: 300px;
+                width: 100%;
+                height: 100%;
             }
         }
         &__description {
             width: 100%;
             margin-bottom: 366px;
             &_text {
-                font-family: "Myriad Pro";
                 font-size: 13px;
-                font-weight: 400;
             }
         }
         &__information {
@@ -163,10 +169,7 @@
         }
         &__product {
             $self: &;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            width: 225px;
+            width: 70%;
             &:not(:last-child) {
                 margin-bottom: 25px;
             }
@@ -174,7 +177,6 @@
                 overflow: hidden;
             }
             &_name {
-                font-family: "Myriad Pro";
                 margin: 0;
                 font-size: 12px;
             }
@@ -209,30 +211,12 @@
             }
             &_block {
                 position: relative;
-                width: 225px;
+                width: 100%;
                 height: 224px;
                 margin-bottom: 0;
                 margin-top: 20px;
                 overflow: hidden;
                 cursor: pointer;
-                &:hover {
-                    #{$self}_description {
-                        right: 0;
-                    }
-                    #{$self}_images {
-                        left: -100%;
-                    }
-                }
-            }
-            &_description {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                right: -110%;
-                padding-left: 10px;
-                background-color: #ffffff;
-                transition: all 2.5s;
             }
         }
     }
@@ -262,6 +246,159 @@
             &.big {
                 grid-row: span 1;
                 grid-column: span 1;
+            }
+        }
+    }
+    .cards {
+        width: 300px;
+        height: 98%;
+        align-items: center;
+        &_block {
+            width: 300px;
+            height: 100%;
+        }
+        &_page {
+            font-size: 22px;
+            color: #c2c2c2;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 80%;
+            margin-top: 30%;
+        }
+        &_prev {
+            left: 0;
+            z-index: 1;
+            padding-bottom: 81%;
+        }
+        &_next {
+            right: 0;
+        }
+    }
+    .slider_block {
+        width: 300px;
+        height: 1550px;
+    }
+    .card {
+        padding: 20px;
+        width: 300px;
+        height: 100%;
+        overflow-y: scroll;
+        &__close {
+            width: 14px;
+            height: 14px;
+            top: 12px;
+            right: 14px;
+            &:hover {
+                width: 16px;
+                height: 16px;
+                background-size: cover;
+            }
+        }
+        &__heading {
+            color: #5e5e60;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 21px;
+        }
+        &__block {
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            &_icon {
+                width: 15px;
+                height: 15px;
+            }
+        }
+        &__link {
+            &_first {
+                margin-right: 73px;
+                align-items: flex-end;
+                line-height: 13.98px;
+                margin-bottom: 15px;
+            }
+        }
+        &__image {
+            width: 240px;
+            height: 240px;
+            position: absolute;
+            top: 180px;
+            left: 4%;
+            margin-right: 0;
+            &_item {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        &__description {
+            width: 100%;
+            margin-bottom: 280px;
+            &_text {
+                font-size: 13px;
+            }
+        }
+        &__information {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 100%;
+        }
+        &__products {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        &__product {
+            $self: &;
+            width: 80%;
+            &:not(:last-child) {
+                margin-bottom: 25px;
+            }
+            &_title {
+                overflow: hidden;
+            }
+            &_name {
+                margin: 0;
+                font-size: 12px;
+            }
+            &_images {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                text-align: center;
+                transition: all 2s;
+                cursor: pointer;
+            }
+            &_cost {
+                &-new {
+                    font-size: 12px;
+                }
+                &-old {
+                    font-size: 12px;
+                }
+            }
+            &_button {
+                padding-top: 10px;
+                padding-bottom: 11px;
+            }
+            &_sale {
+                position: absolute;
+                width: 41px;
+                height: 41px;
+                top: 1px;
+                right: 4px;
+            }
+            &_block {
+                position: relative;
+                width: 100%;
+                height: 224px;
+                margin-bottom: 0;
+                margin-top: 20px;
+                overflow: hidden;
+                cursor: pointer;
             }
         }
     }
