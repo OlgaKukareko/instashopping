@@ -97,6 +97,14 @@
         width: 451px;
         height: 1550px;
     }
+    .icon {
+        width: 11px;
+        height: 22px;
+        fill: #c7c7c7;
+        &:hover {
+            fill: green;
+        }
+    }
     .card {
         padding: 22px 34px 22px 30px;
         width: 451px;

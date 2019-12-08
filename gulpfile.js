@@ -6,34 +6,60 @@ const destination_path = 'dist/'; // папка куда положить ито
 const final_css_name = 'styles.css'; // имя итоговогой файла
 
 
-const gulp         = require('gulp');
-const sass         = require('gulp-sass');
-const sourcemaps   = require('gulp-sourcemaps');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
-const concat       = require('gulp-concat');
-const browserSync  = require('browser-sync').create();
+const concat = require('gulp-concat');
+const browserSync = require('browser-sync').create();
 const browser_list = ['last 2 versions', 'ie >= 10'];
+const svgSprite = require('gulp-svg-sprite');;
+const svgmin = require('gulp-svgmin');
+const cheerio = require('gulp-cheerio');
+const replace = require('gulp-replace');
 
 function sync() {
-	browserSync.init({
-		server: {
-			baseDir: './'
-		}
-	});
+    browserSync.init({
+        server: {
+            baseDir: './'
+        }
+    });
 
-	gulp.watch(scss_path_to_watch, {ignoreInitial: false}, build_sass);
-	gulp.watch("./*.html").on('change', browserSync.reload);
+    gulp.watch(scss_path_to_watch, { ignoreInitial: false }, build_sass);
+    gulp.watch("./*.html").on('change', browserSync.reload);
 }
 
 function build_sass() {
-	return gulp.src(path_to_main_scss_file) // get scss file from path
-	.pipe(sourcemaps.init()) // init sourcemaps (for resolving from which scss file your css selector was built) http://prntscr.com/m6rj2p
-	.pipe(sass().on('error', sass.logError)) // compile scss to css
-	.pipe(sourcemaps.write()) // write sourcemaps to css files
-	.pipe(concat(final_css_name)) // concatenate all compiled css files to 1 file
-	.pipe(autoprefixer({browsers: browser_list})) // add vendor prefixes
-    .pipe(gulp.dest(destination_path)) // put final css to destination path
-    .pipe(browserSync.stream()); // reload browser
+    return gulp.src(path_to_main_scss_file) // get scss file from path
+        .pipe(sourcemaps.init()) // init sourcemaps (for resolving from which scss file your css selector was built) http://prntscr.com/m6rj2p
+        .pipe(sass().on('error', sass.logError)) // compile scss to css
+        .pipe(sourcemaps.write()) // write sourcemaps to css files
+        .pipe(concat(final_css_name)) // concatenate all compiled css files to 1 file
+        .pipe(autoprefixer({ browsers: browser_list })) // add vendor prefixes
+        .pipe(gulp.dest(destination_path)) // put final css to destination path
+        .pipe(browserSync.stream()); // reload browser
 }
 
+gulp.task('svgSprite', function() {
+    return gulp.src('./images/icons/*.svg') // svg files for sprite
+        .pipe(svgSprite({
+            mode: {
+                stack: {
+                    sprite: "../sprite.svg" //sprite file name
+                }
+            },
+        }))
+
+    // .pipe(cheerio({
+    //     run: function($) {
+    //         $('[fill]').removeAttr('fill');
+    //         $('[style]').removeAttr('style');
+    //     },
+    //     parserOptions: { xmlMode: true }
+    // }))
+    // cheerio plugin create unnecessary string '>', so replace it.
+    // .pipe(replace('&gt;', '>'))
+
+    .pipe(gulp.dest('./images/icons'));
+});
 exports.default = sync;
