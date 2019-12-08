@@ -49,17 +49,6 @@ gulp.task('svgSprite', function() {
                 }
             },
         }))
-
-    // .pipe(cheerio({
-    //     run: function($) {
-    //         $('[fill]').removeAttr('fill');
-    //         $('[style]').removeAttr('style');
-    //     },
-    //     parserOptions: { xmlMode: true }
-    // }))
-    // cheerio plugin create unnecessary string '>', so replace it.
-    // .pipe(replace('&gt;', '>'))
-
-    .pipe(gulp.dest('./images/icons'));
+        .pipe(gulp.dest('./images/icons'));
 });
 exports.default = sync;
